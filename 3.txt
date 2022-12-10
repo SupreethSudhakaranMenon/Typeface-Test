@@ -1,0 +1,22 @@
+Since there are a 100 APIs, and 1000s of users, it means that there would be a huge number of requests coming each day. Our datastore would store details of users, APIs and each API call. 
+
+Choice of database - SQL 
+Reasoning - We should use an sql database for this task since the data is highly structured and is immense in volume. This data can be easily modelled into a relational schema. 
+
+There would be 3 entities(tables)
+Users
+APIs
+API_calls
+
+The use entity will have attributes like user id, user name, maybe other things like country etc. 
+
+API can have attributes like description, name, route etc
+
+The API_calls table will store data for each API call made by any user. It will store the id of the user making the call (as foreign key to user table) and id of the API which is being called (as foreign key to API table).  
+It will store other attributes like status of the API call (success or failure), time taken for the response, time of request etc. 
+
+
+Post this, all the queries can be modelled as simple SQL queries. 
+
+
+Distributed storing -> since the data is immense in volume, we can even store the data in distributed format. This could be done by using horizontal fragmentation of the APIs table and the API_calls table on the basis of API Ids. Assuming we have 4 data servers, each server can hold data about 25 APIs. This division would also easily incorporate all the provided queries
